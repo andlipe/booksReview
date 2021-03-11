@@ -1,7 +1,8 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import BookList from '../app/components/BookList';
+import Header from '../app/components/Header/Header';
 import { BooksProvider } from '../app/contexts/BookContext';
 import { IBook } from '../app/types/IBooks';
 interface HomeProps {
@@ -10,25 +11,22 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    <div >
+    <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Index | TagBook </title>
       </Head>
-      <header>
-        
-      </header>
+      <Header />
       <BooksProvider books={props.books}>
         <BookList />
       </BooksProvider>
-    </div>
+    </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const fetchBookList = await fetch('http://localhost:3005/api/books')
     .then(response => response.json());
-  const books = fetchBookList.results;  
+  const books = fetchBookList;  
     return {
       props: {
         books,
