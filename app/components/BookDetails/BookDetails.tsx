@@ -1,4 +1,4 @@
-import { IBook } from '@types/IBook';
+import { IBook } from '../../types/IBook';
 import React from 'react';
 import { BookDetailsContainer } from './styles';
 

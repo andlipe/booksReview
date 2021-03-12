@@ -4,6 +4,7 @@ import { IReview, IReviewError } from '../../app/types/IReview';
 import { IBook } from '../../app/types/IBook';
 import Header from '@components/Header/Header';
 import BookDetails from '@components/BookDetails/BookDetails';
+import Head from 'next/head';
 
 type HomeProps = {
     reviews: IReview | IReviewError;
@@ -16,10 +17,12 @@ export default function details(props: HomeProps) {
 
 
     return (
-        <>
+        <>  
+            <Head>
+                <title>Detalhes | TagBook</title>
+            </Head>
             <Header />
             <BookDetails book={book} isbnReview={isbnReview}/>
-            
         </>
     )
 }
@@ -33,9 +36,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const fetchBook = await fetch(`${books_api_url}/api/books/${isbn}`).then(response => response.json());
     await fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${isbn}`)
         .then(response => response.json())
-        .then(result => reviews = result[0])
+        .then(result => reviews = result)
         .catch(err => reviews = new Object({ message: "Sem dados suficientes" }));
-
     const book = fetchBook[0];
     return {
         props: {
