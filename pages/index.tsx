@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import BookList from '../app/components/BookList';
+import BookList from '../app/components/BookList/BookList';
 import Header from '../app/components/Header/Header';
 import { BooksProvider } from '../app/contexts/BookContext';
 import { IBook } from '../app/types/IBooks';
