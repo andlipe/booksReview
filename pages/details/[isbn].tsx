@@ -1,10 +1,12 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { IReview } from '../../app/types/IReview';
+import { IReview, IReviewError } from '../../app/types/IReview';
 import { IBook } from '../../app/types/IBook';
+import Header from '@components/Header/Header';
+import BookDetails from '@components/BookDetails/BookDetails';
 
 type HomeProps = {
-    reviews: IReview;
+    reviews: IReview | IReviewError;
     book: IBook
 }
 
@@ -14,27 +16,26 @@ export default function details(props: HomeProps) {
 
 
     return (
-        <div>
-            <h3>{book.name}</h3>
-            <img src={book.cover.url}/>
-            <span>{book.author}</span>
-            <span>{book.edition}</span>
-            <span>{book.curator}</span>
-            <span>{book.pages}</span>
-            <span>{book.numRatings}</span>
-            <span>{isbnReview.ratings_count}</span>
-        </div>
+        <>
+            <Header />
+            <BookDetails book={book} isbnReview={isbnReview}/>
+            
+        </>
     )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {isbn} = context.query;
     const goodreads_api_url = process.env.GOODREADS_API_URL;
+    const books_api_url = process.env.BOOKS_API_URL;
+    let reviews;
 
-    const fetchBook = await fetch(`${goodreads_api_url}/api/books/${isbn}`).then(response => response.json());
-    const fetchReviewsFromGoodReads = await fetch(`http://localhost:3000/book/review_counts.json?isbns=${isbn}`)
-        .then(response => response.json());
-    const reviews = fetchReviewsFromGoodReads.books[0];
+    const fetchBook = await fetch(`${books_api_url}/api/books/${isbn}`).then(response => response.json());
+    await fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${isbn}`)
+        .then(response => response.json())
+        .then(result => reviews = result[0])
+        .catch(err => reviews = new Object({ message: "Sem dados suficientes" }));
+
     const book = fetchBook[0];
     return {
         props: {

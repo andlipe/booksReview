@@ -9,5 +9,8 @@ export type IReview = {
     work_ratings_count: number;
     work_reviews_count: number;
     work_text_reviews_count: number;
-    
+}
+
+export type IReviewError = {
+    message: string;
 }
