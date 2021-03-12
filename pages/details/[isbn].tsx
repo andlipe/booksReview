@@ -29,7 +29,9 @@ export default function details(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {isbn} = context.query;
-    const fetchBook = await fetch(`http://localhost:3005/api/books/${isbn}`).then(response => response.json());
+    const goodreads_api_url = process.env.GOODREADS_API_URL;
+
+    const fetchBook = await fetch(`${goodreads_api_url}/api/books/${isbn}`).then(response => response.json());
     const fetchReviewsFromGoodReads = await fetch(`http://localhost:3000/book/review_counts.json?isbns=${isbn}`)
         .then(response => response.json());
     const reviews = fetchReviewsFromGoodReads.books[0];

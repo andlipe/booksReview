@@ -24,7 +24,9 @@ export default function Home(props: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const fetchBookList = await fetch('http://localhost:3005/api/books')
+  const books_api_url = process.env.BOOKS_API_URL;
+
+  const fetchBookList = await fetch(`${books_api_url}/api/books`)
     .then(response => response.json());
   const books = fetchBookList;  
     return {
