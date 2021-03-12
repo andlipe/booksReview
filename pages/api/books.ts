@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import books from '../../livros.json';
-import { IBook } from "../../app/types/IBooks";
+import { IBook } from "../../app/types/IBook";
 
 type IMessage = {
   message: string;
