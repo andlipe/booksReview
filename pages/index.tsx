@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import BookList from '../app/components/BookList/BookList';
-import Header from '../app/components/Header/Header';
-import { BooksProvider } from '../app/contexts/BookContext';
-import { IBook } from '../app/types/IBooks';
+import BookList from '@components/BookList/BookList';
+import Header from '@components/Header/Header';
+import { BooksProvider } from '@contexts/BookContext';
+import { IBook } from '../app/types/IBook';
 interface HomeProps {
   books: Array<IBook>
 }

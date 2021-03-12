@@ -1,6 +1,6 @@
 import React from 'react'
-import { BooksContext } from '../../../app/contexts/BookContext';
-import BookCard from '../BookCard/BookCard';
+import { BooksContext } from '@contexts/BookContext';
+import BookCard from '@components/BookCard/BookCard';
 import { BookListContainer } from './styles';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { IReview } from '../../app/types/IReview';
-import { IBook } from '../../app/types/IBooks';
+import { IBook } from '../../app/types/IBook';
 
 type HomeProps = {
     reviews: IReview;

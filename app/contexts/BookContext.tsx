@@ -1,5 +1,5 @@
 import React from "react";
-import { IBook } from "../types/IBooks";
+import { IBook } from "../types/IBook";
 
 interface BooksProviderProps {
     children: React.ReactNode;
