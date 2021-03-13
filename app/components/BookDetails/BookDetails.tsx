@@ -6,7 +6,7 @@ import Image from 'next/image';
 const BookDetails = ({book, isbnReview}) => {
     return (
         <BookDetailsContainer>
-            <Image src={book.cover.url} width={400} height={450} />
+            <Image src={book.cover.url} width={400} height={450} alt={`Capa do livro ${book.name}`}/>
             <section>
                 <h3>{book.name}</h3>
                 <p>Autor: <span>{book.author}</span></p>
