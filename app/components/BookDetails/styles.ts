@@ -1,4 +1,3 @@
-import { device } from '@styles/device';
 import styled from 'styled-components';
 
 export const BookDetailsContainer = styled.article`
@@ -19,7 +18,7 @@ export const BookDetailsContainer = styled.article`
         font-size: 1.4rem;
         
     }
-    @media ${device.tablet} {
+    @media ${props => props.theme.screens.tablet} {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -27,7 +26,7 @@ export const BookDetailsContainer = styled.article`
 
     }
 
-    @media ${device.laptop} {
+    @media ${props => props.theme.screens.laptop} {
         display: flex;
         flex-direction: row;
 

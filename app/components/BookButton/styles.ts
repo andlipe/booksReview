@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const A = styled.a`
     display: inline-block;
-    color: #1976d2;
+    color: ${props => props.theme.text.link};
     width: fit-content;
     margin-top: 0.5rem;
     padding: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     
     cursor: pointer;
     :hover {

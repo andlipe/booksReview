@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { device } from '@styles/device';
 
 export const BookCardContainer = styled.section`
     display: flex;
@@ -18,7 +17,7 @@ export const BookCardContainer = styled.section`
         margin: 1rem 0;
     }
 
-    @media ${device.laptop} {
+    @media ${props => props.theme.screens.laptop} {
         width: 25%;
         padding: 2rem;
 

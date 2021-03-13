@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
     background-color: #4B5494;
-    color: white;
+    color: ${props => props.theme.text.primary};
     display: inline-flex;
     justify-content: center;
     padding: 1.5rem;
