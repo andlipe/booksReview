@@ -21,7 +21,7 @@ export default function details(props: HomeProps) {
             <Head>
                 <title>Detalhes | TagBook</title>
             </Head>
-            <Header />
+            <Header path={'details'} />
             <BookDetails book={book} isbnReview={isbnReview}/>
         </>
     )

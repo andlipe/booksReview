@@ -15,7 +15,7 @@ export default function Home(props: HomeProps) {
       <Head>
         <title>Index | TagBook </title>
       </Head>
-      <Header />
+      <Header path={'index'}/>
       <BooksProvider books={props.books}>
         <BookList />
       </BooksProvider>

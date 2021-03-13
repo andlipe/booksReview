@@ -1,21 +1,19 @@
 import Link from 'next/link';
 import React from 'react';
 import { HeaderContainer } from './styles';
-import { useRouter } from 'next/router'
 
-const Header = () => {
-    const router = useRouter();
+const Header = ({ path }) => {
     
     return (
         <HeaderContainer>
-            {router.pathname !== '/' && 
+            {path !== 'index' && 
                 (
                 <Link href={"/"}>
                     <a> {"<"} </a>
                 </Link>
                 )
             }
-            <h3>Books</h3>
+            <h3>Books Tag</h3>
         </HeaderContainer>
     );
 }
