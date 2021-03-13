@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const fetchBook = await fetch(`${books_api_url}/api/books/${isbn}`).then(response => response.json());
     await fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${isbn}`)
         .then(response => response.json())
-        .then(result => reviews = result)
+        .then(result => reviews = result.books[0])
         .catch(err => reviews = new Object({ message: "Sem dados suficientes" }));
     const book = fetchBook[0];
     return {

@@ -1,20 +1,25 @@
 import { IBook } from '../../types/IBook';
 import React from 'react';
 import { BookDetailsContainer } from './styles';
+import Image from 'next/image';
 
 const BookDetails = ({book, isbnReview}) => {
     return (
         <BookDetailsContainer>
-            <img src={book.cover.url}/>
-            <h3>{book.name}</h3>
-            <span>{book.author}</span>
-            <span>{book.edition}</span>
-            <span>{book.curator}</span>
-            <span>{book.pages}</span>
-            <span>{book.numRatings}</span>
-            {isbnReview.ratings_count ? 
-            <span>{isbnReview.ratings_count}</span>
-            : <span>Sem dados suficientes</span>}
+            <Image src={book.cover.url} width={400} height={450} />
+            <section>
+                <h3>{book.name}</h3>
+                <p>Autor: <span>{book.author}</span></p>
+                <p>Edição: <span>{book.edition}</span></p>
+                <p>Curador(a): <span>{book.curator}</span></p>
+                <p>Número de páginas: <span>{book.pages}</span></p>
+                <p>Total de avaliações Tag: <span>{book.numRatings}</span></p>
+                <p>Total de avaliações GoodReads: 
+                {isbnReview.ratings_count > 0 ? 
+                <span> {isbnReview.ratings_count}</span>
+                : <span> Sem dados suficientes</span>}
+                </p>
+            </section>
         </BookDetailsContainer>
     );
 }
