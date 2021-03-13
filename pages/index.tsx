@@ -5,8 +5,9 @@ import BookList from '@components/BookList/BookList';
 import Header from '@components/Header/Header';
 import { BooksProvider } from '@contexts/BookContext';
 import { IBook } from '../app/types/IBook';
+import { getBooks } from 'pages/api/books'
 interface HomeProps {
-  books: Array<IBook>
+  books: IBook[];
 }
 
 export default function Home(props: HomeProps) {
@@ -23,15 +24,14 @@ export default function Home(props: HomeProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const books_api_url = process.env.BOOKS_API_URL;
+export const getStaticProps: GetStaticProps =  async (context) => {
 
-  const fetchBookList = await fetch(`${books_api_url}/api/books`)
-    .then(response => response.json());
+  const fetchBookList = getBooks() 
   const books = fetchBookList;  
+
     return {
       props: {
-        books,
+        books
       }
     }
 } 
