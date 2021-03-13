@@ -2,10 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { A } from './styles';
 
-const BookButton = ({ isbn }) => {
+const BookButton = ({ href, text }) => {
     return (
-        <Link href={`/details/${isbn}`}> 
-                <A>Ver mais</A>
+        <Link href={href}> 
+                <A>{text}</A>
         </Link>
     );
 }

@@ -15,7 +15,7 @@ const BookCard = ( { book }: BookCardProps ) => {
             <Image src={`${book.cover.url}`} width={300} height={350} alt={`Capa do livro ${book.name}`} />
             <h3>{book.name}</h3>
             <p>Edição: <span>{book.edition}</span></p>
-            <BookButton isbn={book.isbn}/>
+            <BookButton href={`/details/${book.isbn}`} text={"Ver mais"}/>
         </BookCardContainer>
     );
 }
