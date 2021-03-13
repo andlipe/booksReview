@@ -17,7 +17,7 @@ const BookDetails = ({book, isbnReview}) => {
                 <p>Total de avaliações GoodReads: 
                 {isbnReview.ratings_count > 0 ? 
                 <span> {isbnReview.ratings_count}</span>
-                : <span> Sem dados suficientes</span>}
+                : <span> {isbnReview.message}</span>}
                 </p>
             </section>
         </BookDetailsContainer>
