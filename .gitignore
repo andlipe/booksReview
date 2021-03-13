@@ -34,4 +34,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-servidor_proxy
+servidor_proxy/teste_ti_frontend/node_modules
