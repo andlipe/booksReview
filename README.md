@@ -21,9 +21,9 @@ git clone https://github.com/tag-livros/andre-moura-09-03.git
 ```
 
 ### Com docker
-Instale os containers
+Instale e suba os containers
 ```sh
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 ### Manualmente
