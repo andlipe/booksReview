@@ -17,6 +17,11 @@ export const BookCardContainer = styled.section`
         margin: 1rem 0;
     }
 
+    p {
+        padding: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
     @media ${props => props.theme.screens.laptop} {
         width: 25%;
         padding: 2rem;

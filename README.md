@@ -7,7 +7,7 @@ Objetivo desse projeto é criar um webapp que faça a comparação entre as méd
 
 [NextJS](https://nextjs.org)  
 [Jest](https://jestjs.io)  
-[TypeScript](https://www.typescriptlang.org)
+[TypeScript](https://www.typescriptlang.org)  
 [styled-components](https://styled-components.com)
 ### Pré requisitos
 Node.Js 14.x
