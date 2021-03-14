@@ -1,101 +1,112 @@
-# Frontend para comparação de notas de livros
-Esse repositório é um teste técnico. Usamos ele em nosso processo seletivo para entendermos um pouco mais sobre o modo de trabalho das pessoas participantes. Nesse repositório, você terá a descrição do problema, assim como os requerimentos funcionais e técnicos esperados.
+# BookReviews
 
-## O problema
-Você foi incumbido de criar um webapp que faça análise comparativa entre as notas que os associados da TAG deram, pelo aplicativo atual do clube, com as avaliações que as pessoas fizeram aos mesmos livros no site GoodReads. O escopo do webapp é meramente avaliativo, não pretendemos utilizá-lo em lugar algum.
+## Sobre o Projeto
+Objetivo desse projeto é criar um webapp que faça a comparação entre as médias de avaliações na Tag e a média de avaliações na GoodReads.
 
-O webapp deverá:
-1. Consumir as APIs de avaliação dos livros conforme descrito abaixo.
-2. Exibir as comparações entre as médias de avaliações TAG e médias GoodReads.
-  1. A exibição deve ser ordenada com base no campo `edition` do `livros.json`, que contém dados na forma “Mês de Ano” em ordem descendente (mês mais recente primeiro).
-3. Ao clicar em cada comparação de livro, o webapp deverá navegar para uma tela de detalhes, que exibe:
-  - título do livro,
-  - capa,
-  - autor(a),
-  - mês/ano edição,
-  - curador(a),
-  - número de páginas,
-  - total de avaliações TAG
-  - total de avaliações GoodReads.
-  
-O design do webapp fica a critério da pessoa candidata (vocẽ).
+## Criado com
 
-## Avaliação
-Aplicamos esse mesmo teste para todas pessoas candidatas para as vagas de _Desenvolvedor Web_ (junior, pleno e senior).
+[NextJS](https://nextjs.org)  
+[Jest](https://jestjs.io)  
+[TypeScript](https://www.typescriptlang.org)
+[styled-components](https://styled-components.com)
+### Pré requisitos
+Node.Js 14.x
+Docker
+Docker-compose
+## Instalação
 
-As expectativas e critérios na avaliação variam de acordo com a vaga para qual o candidato aplicou:
-Expectativas para pessoas participando de um processo seletivo Junior:
-- Familiaridade de JS, HTML5 e CSS
-  - Boa semântica do HTML5
-  - Boa organização do CSS
-  - Baixa complexidade do código de JS
-- Familiaridade com o framework React
-  - Componetização
-  - (Desejável) Testes
-  - Bom uso das APIs do React
-- Familiaridade com o consumo de APIs
-  - Consumo de APIs com tratamento dos diversos códigos HTTP.
-- Criar designs agrádaveis aos usuários
-- Aplicação de algumas boas práticas de código
-  - Evitar código morto
-  - Código legível
-  - Evitar componentes gigantes
-  - ...
-- Documentação de como rodar a aplicação
+1. Clone esse repositório
+```sh
+git clone https://github.com/tag-livros/andre-moura-09-03.git
+```
 
-Pessoas participando de um processo seletivo pleno:
-- Domínio de JS/TS HTML5 e CSS
-  - Boa semântica do HTML5
-  - Boa organização do CSS
-  - Baixa complexidade do código de JS/TS
-- Domínio do framework React
-  - Componentes bem estruturados e com testes
-  - Bom uso das APIs do React
-- Domínio com o consumo de APIs
-  - Consumo de APIs com tratamento dos diversos códigos HTTP.
-- Criação de designs agrádaveis aos usuários
-  - Desktop e mobile
-- Aplicação de boas práticas de código
-- Documentação de como rodar a aplicação
-- Uso de váriaveis de ambiente
-- Configuração de scripts de testes e de linters no projeto
-  - npm scripts
-- (Desejável) Criação de uma API que retorna o resultado de `livros.json`.
+### Com docker
+Instale os containers
+```sh
+docker-compose up -d
+```
 
-Pessoas participando de um processo seletivo Senior:
-- Domínio de JS/TS HTML5 e CSS
-  - Boa semântica do HTML5
-  - Boa organização do CSS
-  - Uso de CSS in JS/TS
-  - Baixa complexidade do código de JS/TS
-- Domínio do framework React
-  - Componentes bem estruturados e com testes
-  - Bom uso das APIs do React
-- Domínio com o consumo de APIs
-  - Consumo de APIs com tratamento dos diversos códigos HTTP.
-- Criação de designs agrádaveis aos usuários
-  - Desktop e mobile
-- Aplicação de boas práticas de código
-- Documentação de como rodar a aplicação
-- Uso de váriaveis de ambiente
-- Configuração de scripts de testes e de linters no projeto
-  - npm scripts
-- Domínio de alguma ferramenta (SSR ou SSG)
-  - Preparalção da aplicação para rodar em produçao
-  - Em SSR, containerização da aplicação
-- (Desejável) Criação de uma API que retorna o resultado de `livros.json`.
-- (Desejável) Pipeline CI/CD que executam os scripts de build, linter e testes.
+### Manualmente
 
-## Considerações Técnicas
+ Faça a instalação dos pacotes NPM
+```sh
+yarn
+```
+ Renomeie o arquivo .env.example para .env e substitua e coloque a URL onde será rodado o projeto
+```sh
+BOOKS_API_URL="http://localhost:3005"
+GOODREADS_API_URL="http://localhost:3000"
+``` 
+Inicie o projeto
+```sh
+yarn dev
+```
+Para rodar os testes unitários
+```sh
+yarn test
+```
+Gerar a build para produção
+```sh
+yarn build
+```
 
-### APIs de avaliação dos livros
-- TAG: Os dados do aplicativo da TAG podem ser simulados através do json disponível no reposiório (livros.json)
-- GoodReads: É preciso consumir a API, e para facilitar nós fornecemos um servidor http proxy para evitar problemas de comunicação, vide a pasta `servidor_proxy` no repositório.
+Iniciar a api e servir os arquivos
+```sh
+yarn start
+```
+# Api
 
- O campo a ser utilizado para comparar um livro entre TAG e GoodReads deve ser o ISBN, cujo valor pode não conferir e o livro não existir na API do GoodReads. Esses casos devem ser tratados pelo seu webapp.
-    
-### Limitações técnicas:
-* Não utilize bibliotecas, rotinas prontas, códigos existentes na linguagem JavaScript para fazer a ordenação dos livros. Você deve escrever o algoritmo, uma vez que isso faz parte da avaliação.
+## Listar todos os livros
+### Request
+`GET /api/books`
 
-## Resultado do teste
-* Assim que o prazo de 7 dias acabar a TAG irá removê-lo do repositório.
+### Response
+```json
+    [{
+         "objectId":"4trWWVgkZU",
+         "name":"O Casamento",
+         "createdAt":"2017-01-24T13:58:16.763Z",
+         "updatedAt":"2017-07-03T12:59:29.868Z",
+         "author":"Nelson Rodrigues",
+         "isbn": "9788520926499",
+         "pages":272,
+         "curator":"Heloisa Seixas",
+         "cover":{
+            "__type":"File",
+            "name":"2ff2ea7fe950b7e5ee5d32f65510d249_0b7738a0-4470-483e-9373-7a8581472359.jpg",
+            "url":"https://static2.taglivros.com/2ff2ea7fe950b7e5ee5d32f65510d249_0b7738a0-4470-483e-9373-7a8581472359.jpg"
+         },
+         "edition":"Agosto de 2016",
+         "blocked":false,
+         "numRatings":506,
+         "totalRatings":1938
+    }]
+```
+## Listar um livro pelo ISBN
+
+`GET /api/books/isbn`
+
+### Response
+```json
+    {
+         "objectId":"4trWWVgkZU",
+         "name":"O Casamento",
+         "createdAt":"2017-01-24T13:58:16.763Z",
+         "updatedAt":"2017-07-03T12:59:29.868Z",
+         "author":"Nelson Rodrigues",
+         "isbn": "9788520926499",
+         "pages":272,
+         "curator":"Heloisa Seixas",
+         "cover":{
+            "__type":"File",
+            "name":"2ff2ea7fe950b7e5ee5d32f65510d249_0b7738a0-4470-483e-9373-7a8581472359.jpg",
+            "url":"https://static2.taglivros.com/2ff2ea7fe950b7e5ee5d32f65510d249_0b7738a0-4470-483e-9373-7a8581472359.jpg"
+         },
+         "edition":"Agosto de 2016",
+         "blocked":false,
+         "numRatings":506,
+         "totalRatings":1938
+    }
+
+```
+## Versão em produção  

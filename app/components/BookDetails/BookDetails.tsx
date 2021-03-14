@@ -5,7 +5,13 @@ import { BooksContext } from '@contexts/BookContext';
 
 const BookDetails = ({book}) => {
     const { reviews } = React.useContext(BooksContext);
-    const [filteredReview] = React.useState(reviews.filter(review => review.isbn13 === book.isbn))
+    const [filteredReview, setFilteredReview] = React.useState([])
+    React.useEffect(() => {
+        if(reviews !== undefined) {
+        setFilteredReview(reviews.filter(review => review.isbn13 === book.isbn))
+        }
+    },[reviews])
+    
     return (
         <BookDetailsContainer>
             <Image src={book.cover.url} width={400} height={450} alt={`Capa do livro ${book.name}`}/>
