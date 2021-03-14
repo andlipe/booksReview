@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps =  async (context) => {
   const books = fetchBookList;  
   var reviewsArray = [];
   
-  const testePromise = books.map(book =>
+  const promiseReviews = books.map(book =>
     fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${book.isbn}`)
       .then(response => response.json())
       .then((result) => reviewsArray.push(result.books[0]))
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps =  async (context) => {
       )
       )
   
-  await Promise.all(testePromise)
+  await Promise.all(promiseReviews)
 
     return {
       props: {
