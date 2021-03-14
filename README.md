@@ -109,4 +109,3 @@ yarn start
     }
 
 ```
-## Versão em produção  
