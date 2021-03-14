@@ -6,8 +6,10 @@ import Header from '@components/Header/Header';
 import { BooksProvider } from '@contexts/BookContext';
 import { IBook } from '../app/types/IBook';
 import { getBooks } from 'pages/api/books'
+import { IReview } from '../app/types/IReview';
 interface HomeProps {
   books: IBook[];
+  reviewsArray: IReview[]
 }
 
 export default function Home(props: HomeProps) {
@@ -17,21 +19,31 @@ export default function Home(props: HomeProps) {
         <title>Index | TagBook </title>
       </Head>
       <Header path={'index'}/>
-      <BooksProvider books={props.books}>
         <BookList />
-      </BooksProvider>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps =  async (context) => {
-
-  const fetchBookList = getBooks() 
+  const goodreads_api_url = process.env.GOODREADS_API_URL;
+  const fetchBookList = getBooks();
   const books = fetchBookList;  
+  var reviewsArray = [];
+  
+  const testePromise = books.map(book =>
+    fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${book.isbn}`)
+      .then(response => response.json())
+      .then((result) => reviewsArray.push(result.books[0]))
+      .catch(err => new Object({ message: "Sem dados suficientes" })
+      )
+      )
+  
+  await Promise.all(testePromise)
 
     return {
       props: {
-        books
+        books,
+        reviewsArray
       }
     }
 } 
