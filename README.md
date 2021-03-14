@@ -37,8 +37,18 @@ yarn
 BOOKS_API_URL="http://localhost:3005"
 GOODREADS_API_URL="http://localhost:3000"
 ``` 
-Inicie o projeto
+Inslate os pacotes da API do GoodReads no caminho /servidor_proxy/teste_ti_frontend/
 ```sh
+cd /servidor_proxy/teste_ti_frontend/
+npm install
+```
+Após instalar os pacotes só iniciar a api
+```sh
+npm start
+```
+Volte para a raiz do projeto e inicie o projeto
+```sh
+cd ../../
 yarn dev
 ```
 Para rodar os testes unitários
