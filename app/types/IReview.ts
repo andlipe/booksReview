@@ -1,7 +1,7 @@
 export type IReview = {
     average_rating: string;
     id: number;
-    isbn: number | null;
+    isbn: string | null;
     isbn13: string | null;
     ratings_count: number;
     reviews_count: number;
