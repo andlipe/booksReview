@@ -29,7 +29,6 @@ export const getStaticProps: GetStaticProps =  async (context) => {
   const fetchBookList = getBooks();
   const books = fetchBookList;  
   var reviewsArray = [];
-  
   const promiseReviews = books.map(book =>
     fetch(`${goodreads_api_url}/book/review_counts.json?isbns=${book.isbn}`)
       .then(response => response.json())
@@ -37,10 +36,9 @@ export const getStaticProps: GetStaticProps =  async (context) => {
       .catch(err => new Object({ message: "Sem dados suficientes" })
       )
       )
-  
   await Promise.all(promiseReviews)
 
-    return {
+  return {
       props: {
         books,
         reviewsArray
