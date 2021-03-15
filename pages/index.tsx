@@ -3,7 +3,6 @@ import Head from 'next/head';
 import React from 'react';
 import BookList from '@components/BookList/BookList';
 import Header from '@components/Header/Header';
-import { BooksProvider } from '@contexts/BookContext';
 import { IBook } from '../app/types/IBook';
 import { getBooks } from 'pages/api/books'
 import { IReview } from '../app/types/IReview';
