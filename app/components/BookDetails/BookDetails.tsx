@@ -2,6 +2,7 @@ import React from 'react';
 import { BookDetailsContainer } from './styles';
 import Image from 'next/image';
 import { BooksContext } from '@contexts/BookContext';
+import { motion } from 'framer-motion';
 
 const BookDetails = ({book}) => {
     const { reviews } = React.useContext(BooksContext);
@@ -12,10 +13,15 @@ const BookDetails = ({book}) => {
         }
     },[reviews])
     
+
     return (
-        <BookDetailsContainer>
+        <BookDetailsContainer
+        initial='initial' animate='animate' exit={{ opacity: 0 }}
+        >
             <Image src={book.cover.url} width={400} height={450} alt={`Capa do livro ${book.name}`}/>
-            <section>
+            <motion.section 
+                initial={{ x:60, opacity:0}} animate={{x:0, opacity:1}}
+            >
                 <h3>{book.name}</h3>
                 <p>Autor: <span>{book.author}</span></p>
                 <p>Edição: <span>{book.edition}</span></p>
@@ -27,7 +33,7 @@ const BookDetails = ({book}) => {
                 <span> {filteredReview[0].ratings_count}</span>
                 : <span> Sem dados disponíveis</span>}
                 </p>
-            </section>
+            </motion.section>
         </BookDetailsContainer>
     );
 }

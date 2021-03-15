@@ -6,9 +6,20 @@ import { BookListContainer } from './styles';
 
 export default function BookList() {
     const { books } = React.useContext(BooksContext)
-
+    const stagger = {
+        animate: {
+          transition: {
+            staggerChildren: 0.5
+          }
+        }
+      };
     return (
-        <BookListContainer>
+        <BookListContainer 
+            initial={{ x: 60, opacity: 0 }} 
+            animate={{x: 0, opacity: 1}}
+            variants={stagger}
+            exit={{ x:60, opacity: 0 }}
+        >
             {books && books.map(book => (
                 <BookCard key={book.isbn} book={book} />
             ))}

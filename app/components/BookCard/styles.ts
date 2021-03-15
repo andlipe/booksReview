@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion'
 
-export const BookCardContainer = styled.section`
+
+export const BookCardContainer = styled(motion.section)`
     display: flex;
     flex-direction: column;
     padding: 1.5rem;

@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const BookDetailsContainer = styled.article`
+export const BookDetailsContainer = styled(motion.article)`
     margin: 2rem;
 
     h3 {

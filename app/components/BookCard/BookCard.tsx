@@ -8,13 +8,15 @@ import { BooksContext } from '@contexts/BookContext';
 type BookCardProps = {
     book: IBook
 }
-
+    
 const BookCard = ( { book }: BookCardProps ) => {
     const { reviews } = React.useContext(BooksContext);
     const [filteredReview] = React.useState(reviews.filter(review => review.isbn13 === book.isbn))
     
+    
+
     return (
-        <BookCardContainer>
+        <BookCardContainer initial={{ x:60, opacity:0}} animate={{x:0, opacity:1}}>
             <Image src={`${book.cover.url}`} width={300} height={350} alt={`Capa do livro ${book.name}`} />
             <h3>{book.name}</h3>
             <p>Edição: <span>{book.edition}</span></p>
